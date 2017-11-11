@@ -11,8 +11,7 @@ while True:
   sense.show_message("Astro Pi is awesome!", text_colour=yellow, back_colour=blue, scroll_speed=0.05)
 """
 
-# show pitch, roll, yaw
+# show pitch, roll, yaw, using accelerometer, gyroscope and magnetometer (for best accuracy)
 while True:
     orientation = sense.get_orientation()
     print("Pitch %d, Roll %d, Yaw %d" % (orientation["pitch"], orientation["roll"], orientation["yaw"]))
-    
