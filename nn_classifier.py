@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from sklearn import neighbors
+from sklearn.externals import joblib
 import pandas as pd
 
 n_neighbors = 25
@@ -29,6 +30,8 @@ h = .3
 cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF', '#FDFD06'])
 cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF', '#F0E94A'])
 
+# 'uniform' : all points in each neighborhood are weighted equally.
+# 'distance' : weight points by the inverse of their distance.
 for weights in ['uniform', 'distance']:
     # we create an instance of Neighbours Classifier and fit the data.
     clf = neighbors.KNeighborsClassifier(n_neighbors, weights=weights)
@@ -46,11 +49,9 @@ for weights in ['uniform', 'distance']:
     Z = Z.reshape(xx.shape)
     plt.figure()
     plt.pcolormesh(xx, yy, Z, cmap=cmap_light)
-    # plt.pcolormesh(xx, yy, Z)
 
     # Plot also the training points
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_bold, edgecolor='k', s=20)
-    # plt.scatter(X[:, 0], X[:, 1], c=y, edgecolor='k', s=20)
     plt.xlim(xx.min(), xx.max())
     plt.ylim(yy.min(), yy.max())
     plt.title("5-Class classification (k = %i, weights = '%s')" % (n_neighbors, weights))
@@ -58,5 +59,8 @@ for weights in ['uniform', 'distance']:
     plt.ylabel("Roll Angle")
     # x label
     plt.xlabel("Pitch Angle")
+    # save classifier
+    joblib.dump(clf, 'knn_' + weights + '.pkl')
 
 plt.show()
+
