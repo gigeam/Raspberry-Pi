@@ -1,27 +1,15 @@
-print(__doc__)
-
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-from sklearn import neighbors, datasets
+from sklearn import neighbors
 import pandas as pd
 
-n_neighbors = 20
-
-# import some data to play with
-iris = datasets.load_iris()
-
-# we only take the first two features. We could avoid this ugly
-# slicing by using a two-dim dataset
-X = iris.data[:, :2]
-y = iris.target
-
-print(X.shape)
-print(y.shape)
+n_neighbors = 25
 
 # load the data_frame created using sense hat
 df_source = pd.read_csv("angles.csv")
-df = df_source.sample(frac=0.2, replace=False)
+# use only a quarter of data
+df = df_source.sample(frac=0.25, replace=False)
 pitch = np.array(df["pitch"]).reshape(len(df["pitch"]), 1)
 roll = np.array(df["roll"]).reshape(len(df["roll"]), 1)
 # code the commands (i.e. replace the strings with a number code)
@@ -30,22 +18,16 @@ df["command"] = df["command"].replace("forward", 1)
 df["command"] = df["command"].replace("backward", 2)
 df["command"] = df["command"].replace("left", 3)
 df["command"] = df["command"].replace("right", 4)
-label = np.array(df["command"])
-print(label)
+y = np.array(df["command"])
+X = np.concatenate((pitch, roll), axis=1)
+print("data dimensions: ", X.shape, y.shape)
 
+# step size in the mesh
+h = .3  
 
-X_t = np.concatenate((pitch, roll), axis=1)
-print(X_t.shape)
-
-X = X_t
-y = label
-
-
-h = .3  # step size in the mesh
-
-# Create color maps
-cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF'])
-cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF'])
+# Create color maps [red, green, blue, yellow]
+cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF', '#FDFD06'])
+cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF', '#F0E94A'])
 
 for weights in ['uniform', 'distance']:
     # we create an instance of Neighbours Classifier and fit the data.
@@ -71,6 +53,10 @@ for weights in ['uniform', 'distance']:
     # plt.scatter(X[:, 0], X[:, 1], c=y, edgecolor='k', s=20)
     plt.xlim(xx.min(), xx.max())
     plt.ylim(yy.min(), yy.max())
-    plt.title("3-Class classification (k = %i, weights = '%s')" % (n_neighbors, weights))
+    plt.title("5-Class classification (k = %i, weights = '%s')" % (n_neighbors, weights))
+    # y label
+    plt.ylabel("Roll Angle")
+    # x label
+    plt.xlabel("Pitch Angle")
 
 plt.show()
