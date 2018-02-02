@@ -5,13 +5,13 @@ import pandas as pd
 
 def on_press(key):
     try:
-        print('--alphanumeric key pressed')
+        print('alphanumeric key {0} pressed'.format(key.char))
     except AttributeError:
-        print('--special key {0} pressed '.format(key))
+        print('special key {0} pressed'.format(key))
 
 
 def on_release(key):
-    print('{0}--released'.format(key))
+    print('{0} released'.format(key))
     if key == keyboard.Key.esc:
         # Stop listener
         return False
@@ -56,6 +56,5 @@ while True:
         pd.DataFrame(angles_list).to_csv("angles.csv", index=False)
         print("Exiting program...")
         break
-
 
 """
