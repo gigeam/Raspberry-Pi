@@ -1,17 +1,37 @@
 from sense_hat import SenseHat
-import keyboard
+from pynput import keyboard
 import pandas as pd
 
 
+def on_press(key):
+    try:
+        print('alphanumeric key {0} pressed'.format(key.char))
+    except AttributeError:
+        print('special key {0} pressed'.format(key))
+
+
+def on_release(key):
+    print('{0} released'.format(key))
+    if key == keyboard.Key.esc:
+        # Stop listener
+        return False
+
+
+# Collect events until released
+with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+
+"""
 sense = SenseHat()
 
 # print stuff to LED
-"""
-blue = (0, 0, 255)
-yellow = (255, 255, 0)
-while True:
-  sense.show_message("Astro Pi is awesome!", text_colour=yellow, back_colour=blue, scroll_speed=0.05)
-"""
+
+# blue = (0, 0, 255)
+# yellow = (255, 255, 0)
+# while True:
+#  sense.show_message("Astro Pi is awesome!", text_colour=yellow, back_colour=blue, scroll_speed=0.05)
+
 
 angles_list = []
 # show pitch, roll, yaw, using accelerometer, gyroscope and magnetometer (for best accuracy)
@@ -36,3 +56,6 @@ while True:
         pd.DataFrame(angles_list).to_csv("angles.csv", index=False)
         print("Exiting program...")
         break
+
+
+"""
