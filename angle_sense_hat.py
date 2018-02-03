@@ -7,6 +7,7 @@ sense = SenseHat()
 angles_list = []
 
 
+# define behaviour for key press
 def on_press(key):
     try:
         print("alphanumeric pressed: ", key.char)
@@ -16,25 +17,42 @@ def on_press(key):
                       "roll": orientation["roll"],
                       "yaw": orientation["yaw"],
                       "command": "stop"}
-        """
-        if keyboard.is_pressed("f"):
-            angle["command"] = "forward"
-        """
-        print(type(key.char))
+        # change the command depending on what keys are pressed
+        if key.char == "f":
+            angle_info["command"] = "forward"
+            # show value on LED
+            sense.show_message("f")
+        if key.char == "b":
+            angle_info["command"] = "backward"
+            # show value on LED
+            sense.show_message("b")
+        if key.char == "l":
+            angle_info["command"] = "left"
+            # show value on LED
+            sense.show_message("l")
+        if key.char == "r":
+            angle_info["command"] = "right"
+            # show value on LED
+            sense.show_message("r")
+        # print to screen all the angle_info values
         print("pitch: ", angle_info["pitch"],
               "roll: ", angle_info["roll"],
               "yaw: ", angle_info["yaw"],
               "command: ", angle_info["command"])
-        # append angle info to list
-        angles_list.append()
+        # append angle_info to list
+        angles_list.append(angle_info)
     except AttributeError:
         print("special key pressed: ", key)
 
 
+# define behaviour for key release
 def on_release(key):
     print('{0} released'.format(key))
     if key == keyboard.Key.esc:
-        # Stop listener
+        print("Saving angle_info dataframe...")
+        pd.DataFrame(angles_list).to_csv("angle_info.csv", index=False)
+        print("Exiting program...")
+        # stop listener
         return False
 
 # collect events until released
