@@ -4,17 +4,31 @@ import pandas as pd
 
 
 sense = SenseHat()
+angles_list = []
 
 
 def on_press(key):
     try:
-        print('alphanumeric key {0} pressed'.format(key.char))
+        print("alphanumeric pressed: ", key.char)
+        # pitch, roll, yaw, using accelerometer, gyroscope and magnetometer (for best accuracy)
         orientation = sense.get_orientation()
-        angle = {"pitch": orientation["pitch"], "roll": orientation["roll"], "yaw": orientation["yaw"]}
-        angle["command"] = "stop"
-        print("Pitch %d, Roll %d, Yaw %d, Command %s" % (angle["pitch"], angle["roll"], angle["yaw"], angle["command"]))
+        angle_info = {"pitch": orientation["pitch"],
+                      "roll": orientation["roll"],
+                      "yaw": orientation["yaw"],
+                      "command": "stop"}
+        """
+        if keyboard.is_pressed("f"):
+            angle["command"] = "forward"
+        """
+        print(type(key.char))
+        print("pitch: ", angle_info["pitch"],
+              "roll: ", angle_info["roll"],
+              "yaw: ", angle_info["yaw"],
+              "command: ", angle_info["command"])
+        # append angle info to list
+        angles_list.append()
     except AttributeError:
-        print('special key {0} pressed'.format(key))
+        print("special key pressed: ", key)
 
 
 def on_release(key):
