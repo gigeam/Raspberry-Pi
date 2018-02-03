@@ -41,7 +41,7 @@ def on_press(key):
 # define behaviour for key release
 def on_release(key):
     print('{0} released'.format(key))
-    # when esc key is pressed save list into a dataframe file
+    # when esc key is pressed save angles_list into a dataframe file named angle_info.csv
     if key == keyboard.Key.esc:
         print("Saving angle_info dataframe...")
         pd.DataFrame(angles_list).to_csv("angle_info.csv", index=False)
