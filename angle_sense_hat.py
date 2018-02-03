@@ -17,26 +17,16 @@ def on_release(key):
         return False
 
 
-lis = keyboard.Listener(on_press=on_press)
-lis.start()  # start to listen on a separate thread
-lis.join()   # no this if main thread is polling self.keys
-
-
-"""
-def on_press(key):
-    try: k = key.char # single-char keys
-    except: k = key.name # other keys
-    if key == keyboard.Key.esc: return False # stop listener
-    if k in ['1', '2', 'left', 'right']: # keys interested
-        # self.keys.append(k) # store it in global-like variable
-        print('Key pressed: ' + k)
-        return False # remove this if want more keys
+sense = SenseHat()
     
 # collect events until released
 with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+    orientation = sense.get_orientation()
+    angle = {"pitch": orientation["pitch"], "roll": orientation["roll"], "yaw": orientation["yaw"]}
+    angle["command"] = "stop"
+    print("Pitch %d, Roll %d, Yaw %d, Command %s" % (angle["pitch"], angle["roll"], angle["yaw"], angle["command"]))
     listener.join()
 
-"""
 
 
 """
