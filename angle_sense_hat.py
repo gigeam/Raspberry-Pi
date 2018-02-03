@@ -24,9 +24,9 @@ def on_release(key, sense_object):
 sense = SenseHat()
     
 # collect events until released
-with keyboard.Listener(on_press=on_press(sense_object=sense), on_release=on_release(sense_object=sense)) as listener:
+with keyboard.Listener(on_press=on_press(key=keyboard.Key, sense_object=sense),
+                       on_release=on_release(key=keyboard.Key, sense_object=sense)) as listener:
     listener.join()
-
 
 
 """
