@@ -53,6 +53,8 @@ while True:
     lis.start()  # start to listen on a separate thread
     lis.join()   # no this if main thread is polling self.keys
 
+    print("stuff")
+
     """
     if keyboard.is_pressed("f"):
         angle["command"] = "forward"
