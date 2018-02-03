@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # load the data_frame created using sense hat
-df = pd.read_csv("angles.csv")
+df = pd.read_csv("angles_info.csv")
 
 # Create a figure
 plt.figure(figsize=(20, 20))
