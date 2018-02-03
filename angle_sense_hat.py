@@ -17,6 +17,11 @@ def on_release(key):
         return False
 
 
+lis = keyboard.Listener(on_press=on_press)
+lis.start()  # start to listen on a separate thread
+lis.join()   # no this if main thread is polling self.keys
+
+
 """
 def on_press(key):
     try: k = key.char # single-char keys
@@ -33,6 +38,8 @@ with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
 
 """
 
+
+"""
 sense = SenseHat()
 
 # print stuff to LED
@@ -55,7 +62,7 @@ while True:
 
     print("stuff")
 
-    """
+    
     if keyboard.is_pressed("f"):
         angle["command"] = "forward"
     elif keyboard.is_pressed("b"):
@@ -74,5 +81,6 @@ while True:
         pd.DataFrame(angles_list).to_csv("angles.csv", index=False)
         print("Exiting program...")
         break 
-    """
+    
 
+"""
