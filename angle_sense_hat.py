@@ -3,14 +3,18 @@ from pynput import keyboard
 import pandas as pd
 
 
-def on_press(key):
+def on_press(key, sense_object):
     try:
         print('alphanumeric key {0} pressed'.format(key.char))
+        orientation = sense_object.get_orientation()
+        angle = {"pitch": orientation["pitch"], "roll": orientation["roll"], "yaw": orientation["yaw"]}
+        angle["command"] = "stop"
+        print("Pitch %d, Roll %d, Yaw %d, Command %s" % (angle["pitch"], angle["roll"], angle["yaw"], angle["command"]))
     except AttributeError:
         print('special key {0} pressed'.format(key))
 
 
-def on_release(key):
+def on_release(key, sense_object):
     print('{0} released'.format(key))
     if key == keyboard.Key.esc:
         # Stop listener
@@ -20,11 +24,7 @@ def on_release(key):
 sense = SenseHat()
     
 # collect events until released
-with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-    orientation = sense.get_orientation()
-    angle = {"pitch": orientation["pitch"], "roll": orientation["roll"], "yaw": orientation["yaw"]}
-    angle["command"] = "stop"
-    print("Pitch %d, Roll %d, Yaw %d, Command %s" % (angle["pitch"], angle["roll"], angle["yaw"], angle["command"]))
+with keyboard.Listener(on_press=on_press(sense_object=sense), on_release=on_release(sense_object=sense)) as listener:
     listener.join()
 
 
