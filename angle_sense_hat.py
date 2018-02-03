@@ -16,17 +16,23 @@ def on_release(key):
         # Stop listener
         return False
 
-# Collect events until released
-#with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-#    listener.join()
-
-
-while True:
-    listener = keyboard.Listener(on_press=on_press, on_release=on_release)
-    listener.join()
-
 
 """
+def on_press(key):
+    try: k = key.char # single-char keys
+    except: k = key.name # other keys
+    if key == keyboard.Key.esc: return False # stop listener
+    if k in ['1', '2', 'left', 'right']: # keys interested
+        # self.keys.append(k) # store it in global-like variable
+        print('Key pressed: ' + k)
+        return False # remove this if want more keys
+    
+# collect events until released
+with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+"""
+
 sense = SenseHat()
 
 # print stuff to LED
@@ -42,6 +48,12 @@ angles_list = []
 while True:
     orientation = sense.get_orientation()
     angle = {"pitch": orientation["pitch"], "roll": orientation["roll"], "yaw": orientation["yaw"]}
+
+    lis = keyboard.Listener(on_press=on_press)
+    lis.start()  # start to listen on a separate thread
+    lis.join()   # no this if main thread is polling self.keys
+
+    """
     if keyboard.is_pressed("f"):
         angle["command"] = "forward"
     elif keyboard.is_pressed("b"):
@@ -59,6 +71,6 @@ while True:
         print("Saving angle dataframe..")
         pd.DataFrame(angles_list).to_csv("angles.csv", index=False)
         print("Exiting program...")
-        break
+        break 
+    """
 
-"""
