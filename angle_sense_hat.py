@@ -10,7 +10,7 @@ angles_list = []
 # define behaviour for key press
 def on_press(key):
     try:
-        print("alphanumeric pressed: ", key.char)
+        print("\n alphanumeric pressed: ", key.char)
         # pitch, roll, yaw, using accelerometer, gyroscope and magnetometer (for best accuracy)
         orientation = sense.get_orientation()
         # create a dictionary with with the following keys: pitch, roll, yaw, command
@@ -28,10 +28,10 @@ def on_press(key):
         if key.char == "r":
             angle_info["command"] = "right"
         # print to screen all the angle_info values
-        print("pitch: ", angle_info["pitch"],
-              "roll: ", angle_info["roll"],
-              "yaw: ", angle_info["yaw"],
-              "command: ", angle_info["command"])
+        print("\n pitch: ", angle_info["pitch"],
+              "\n roll: ", angle_info["roll"],
+              "\n yaw: ", angle_info["yaw"],
+              "\n command: ", angle_info["command"])
         # append angle_info to list
         angles_list.append(angle_info)
     except AttributeError:
