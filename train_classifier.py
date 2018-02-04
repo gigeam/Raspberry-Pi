@@ -9,8 +9,8 @@ n_neighbors = 30
 
 # load the data_frame created using sense hat
 df_source = pd.read_csv("angle_info.csv")
-# use only 80 % of data i.e. fraction = 80
-df = df_source.sample(frac=0.80, replace=False)
+# use all samples of data i.e. fraction = 1.0
+df = df_source.sample(frac=1.0, replace=False)
 pitch = np.array(df["pitch"]).reshape(len(df["pitch"]), 1)
 roll = np.array(df["roll"]).reshape(len(df["roll"]), 1)
 # code the commands (i.e. replace the strings with a number code)
