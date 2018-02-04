@@ -4,7 +4,6 @@ import pandas as pd
 
 
 angles_list = []
-sense = SenseHat()
 
 
 # define behaviour for key press
@@ -12,6 +11,7 @@ def on_press(key):
     try:
         print("\n alphanumeric pressed: ", key.char)
         # pitch, roll, yaw, using accelerometer, gyroscope and magnetometer (for best accuracy)
+        sense = SenseHat()
         orientation = sense.get_orientation()
         # create a dictionary with with the following keys: pitch, roll, yaw, command
         angle_info = {"pitch": orientation["pitch"],
