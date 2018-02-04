@@ -36,7 +36,6 @@ for weights in ['uniform', 'distance']:
     # we create an instance of Neighbours Classifier and fit the data.
     clf = neighbors.KNeighborsClassifier(n_neighbors, weights=weights)
     clf.fit(X, y)
-    """
     # Plot the decision boundary. For that, we will assign a color to each
     # point in the mesh [x_min, x_max]x[y_min, y_max].
     x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
@@ -59,7 +58,7 @@ for weights in ['uniform', 'distance']:
     plt.ylabel("Roll Angle")
     # x label
     plt.xlabel("Pitch Angle")
-    """
+
     # save classifier
     joblib.dump(clf, 'knn_' + weights + '.pkl')
 
