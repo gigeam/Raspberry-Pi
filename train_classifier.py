@@ -5,7 +5,7 @@ from sklearn import neighbors
 from sklearn.externals import joblib
 import pandas as pd
 
-n_neighbors = 30
+n_neighbors = 5
 
 # load the data_frame created using sense hat
 df_source = pd.read_csv("angle_info.csv")
