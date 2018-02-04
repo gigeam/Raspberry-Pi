@@ -14,8 +14,8 @@ plt.scatter(df["pitch"][df["command"] == "stop"],
             df["roll"][df["command"] == "stop"],
             # the marker as
             marker="x",
-            # the color
-            color="k",
+            # the color i.e. red
+            color="#FF0000",
             # the alpha
             alpha=0.7,
             # with size
@@ -29,8 +29,8 @@ plt.scatter(df["pitch"][df["command"] == "forward"],
             df["roll"][df["command"] == "forward"],
             # the marker as
             marker="^",
-            # the color
-            color="r",
+            # the color i.e. green
+            color="#00FF00",
             # the alpha
             alpha=0.7,
             # with size
@@ -44,8 +44,8 @@ plt.scatter(df["pitch"][df["command"] == "backward"],
             df["roll"][df["command"] == "backward"],
             # the marker as
             marker="v",
-            # the color
-            color="g",
+            # the color i.e. blue
+            color="#0000FF",
             # the alpha
             alpha=0.7,
             # with size
@@ -59,8 +59,8 @@ plt.scatter(df["pitch"][df["command"] == "left"],
             df["roll"][df["command"] == "left"],
             # the marker as
             marker="<",
-            # the color
-            color="m",
+            # the color i.e. yellow
+            color="#F0E94A",
             # the alpha
             alpha=0.7,
             # with size
@@ -74,8 +74,8 @@ plt.scatter(df["pitch"][df["command"] == "right"],
             df["roll"][df["command"] == "right"],
             # the marker as
             marker=">",
-            # the color
-            color="b",
+            # the color i.e. purple
+            color="#810C9C",
             # the alpha
             alpha=0.7,
             # with size
