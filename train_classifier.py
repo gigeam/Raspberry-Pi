@@ -8,7 +8,7 @@ import pandas as pd
 n_neighbors = 25
 
 # load the data_frame created using sense hat
-df_source = pd.read_csv("angles_info.csv")
+df_source = pd.read_csv("angle_info.csv")
 # use only a quarter of data
 df = df_source.sample(frac=0.25, replace=False)
 pitch = np.array(df["pitch"]).reshape(len(df["pitch"]), 1)
