@@ -84,7 +84,7 @@ plt.scatter(df["pitch"][df["command"] == "right"],
             label="right")
 
 # Chart title
-plt.title("Manually Annotated Commands")
+plt.title("Manually annotated commands (number of samples = %i)" % len(df))
 
 # y label
 plt.ylabel("Roll Angle")
