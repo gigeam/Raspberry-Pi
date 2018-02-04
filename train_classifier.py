@@ -61,7 +61,7 @@ for weights in ['uniform', 'distance']:
     plt.xlabel("Pitch Angle")
 
     # save classifier
-    # joblib.dump(clf, 'knn_' + weights + '.pkl')
+    joblib.dump(clf, 'knn_' + weights + '.pkl')
 
 plt.show()
 
