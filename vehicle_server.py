@@ -48,7 +48,7 @@ if __name__ == "__main__":
             print("len: ", len(values_received), type(values_received))
             print(values_received, count)
             count += 1
-        except Warning:
+        except:
             pass
     # close the socket
     server_socket.close()
