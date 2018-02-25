@@ -57,10 +57,10 @@ while (True):
         #print("Stepper 2"),
         #randomdir = random.randint(0, 1)
         if (randomdir == 0):
-            dir = Adafruit_MotorHAT.FORWARD
+            dir = Adafruit_MotorHAT.BACKWARD
             #print("forward"),
         else:
-            dir = Adafruit_MotorHAT.BACKWARD
+            dir = Adafruit_MotorHAT.FORWARD
             #print("backward"),
 
         #randomsteps = random.randint(10, 50)
