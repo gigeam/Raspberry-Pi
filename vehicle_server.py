@@ -36,18 +36,25 @@ if __name__ == "__main__":
     # create a socket object
     server_socket = ServerSocket()
     print("listening to socket")
+    connect, address = server_socket.accept()
+    print("got connection from", address)
     # val_1, val_2, val_3 = 1, 2, 3
     count = 1
     while True:
         # command_dictionary = {"val1": val_1, "val2": val_2, "val3": val_3}
         # server_socket.send_dict(connect, command_dictionary)
         try:
-            connect, address = server_socket.accept()
-            print("got connection from", address)
             values_received = server_socket.get_dict(connect, 1024)
             print(values_received, count)
             count += 1
-            # close the socket
-            server_socket.close()
         except:
             pass
+    # close the socket
+    server_socket.close()
+
+
+
+
+
+
+
