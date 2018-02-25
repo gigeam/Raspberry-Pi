@@ -70,28 +70,42 @@ if __name__ == "__main__":
         # print(sys.stderr, 'received %s bytes from %s' % (len(received_data), sender_address))
         print(sys.stderr, received_data)
         # 0 backward, 1 forward
-        direction = 1
+        direction = received_data["command"]
+        # assert that a valid command was received
+        assert(direction == "stop" or
+               direction == "forward" or
+               direction == "backward" or
+               direction == "left" or
+               direction == "right")
         # simply continue if received command was "stop"
-        if direction == 1:
+        if direction == "stop":
             continue
         no_steps = 20
         pos_stepstyles = 0
-        # Stepper 1
+        # stepper 1
         if not st1.isAlive():
-            if direction == 0:
+            if direction == "backward":
+                d = Adafruit_MotorHAT.FORWARD
+            elif direction == "forward":
+                d = Adafruit_MotorHAT.BACKWARD
+            elif direction == "left":
                 d = Adafruit_MotorHAT.FORWARD
             else:
                 d = Adafruit_MotorHAT.BACKWARD
-            print("Stepper 1", "%d steps" % no_steps, "forward" if direction == 0 else "backward")
+            # start thread with stepper 1
             st1 = threading.Thread(target=stepper_worker, args=(myStepper1, no_steps, d, stepstyles[pos_stepstyles],))
             st1.start()
-        # Stepper 2
+        # stepper 2
         if not st2.isAlive():
-            if direction == 0:
+            if direction == "backward":
                 d = Adafruit_MotorHAT.BACKWARD
-            else:
+            elif direction == "forward":
                 d = Adafruit_MotorHAT.FORWARD
-            print("Stepper 2", "%d steps" % no_steps, "forward" if direction == 0 else "backward")
+            elif direction == "left":
+                d = Adafruit_MotorHAT.FORWARD
+            else:
+                d = Adafruit_MotorHAT.BACKWARD
+            # start thread with stepper 2
             st2 = threading.Thread(target=stepper_worker, args=(myStepper2, no_steps, d, stepstyles[pos_stepstyles],))
             st2.start()
         # 0.01 small delay to stop from constantly polling threads
