@@ -93,5 +93,5 @@ if __name__ == "__main__":
             st2.start()
         # 0.5 small delay to stop from constantly polling threads
         # https://forums.adafruit.com/viewtopic.php?f=50&t=104354&p=562733#p562733)
-        time.sleep(0.5)
+        time.sleep(0.01)
 
