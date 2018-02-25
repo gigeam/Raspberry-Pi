@@ -24,8 +24,8 @@ atexit.register(turnOffMotors)
 
 myStepper1 = mh.getStepper(200, 1)      # 200 steps/rev, motor port #1
 myStepper2 = mh.getStepper(200, 2)      # 200 steps/rev, motor port #1
-myStepper1.setSpeed(120)          # 120 RPM
-myStepper2.setSpeed(120)          # 120 RPM
+myStepper1.setSpeed(30)          # 30 RPM
+myStepper2.setSpeed(30)          # 30 RPM
 
 
 stepstyles = [Adafruit_MotorHAT.SINGLE, Adafruit_MotorHAT.DOUBLE, Adafruit_MotorHAT.INTERLEAVE, Adafruit_MotorHAT.MICROSTEP]
@@ -37,7 +37,7 @@ def stepper_worker(stepper, numsteps, direction, style):
 
 while (True):
     randomdir = random.randint(0, 1)
-    randomsteps = random.randint(10, 50)
+    randomsteps = random.randint(50, 100)
     pos_stepstyles = 0
     if not st1.isAlive():
         #randomdir = random.randint(0, 1)
@@ -68,5 +68,7 @@ while (True):
 
         st2 = threading.Thread(target=stepper_worker, args=(myStepper2, randomsteps, dir, stepstyles[pos_stepstyles],))
         st2.start()
-    
-    time.sleep(0.5) #0.1 Small delay to stop from constantly polling threads (see: https://forums.adafruit.com/viewtopic.php?f=50&t=104354&p=562733#p562733)
+
+    # 0.5 small delay to stop from constantly polling threads
+    # https://forums.adafruit.com/viewtopic.php?f=50&t=104354&p=562733#p562733)
+    time.sleep(0.5)
