@@ -71,6 +71,9 @@ if __name__ == "__main__":
         print(sys.stderr, received_data)
         # 0 backward, 1 forward
         direction = 1
+        # simply continue if received command was "stop"
+        if direction == 1:
+            continue
         no_steps = 20
         pos_stepstyles = 0
         # Stepper 1
