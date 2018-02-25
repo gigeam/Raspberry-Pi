@@ -1,53 +1,21 @@
 import socket
-import pickle
+import sys
 
+# Create a UDP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-class ServerSocket(object):
-    # constructor method
-    def __init__(self, raspberry="192.168.0.86", port=12345):
-        self.host = raspberry
-        self.port = port
-        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.server_socket.bind((self.host, self.port))
-        #self.server_socket.listen(5)
+# Bind the socket to the port
+server_address = ('localhost', 10000)
+print >>sys.stderr, 'starting up on %s port %s' % server_address
+sock.bind(server_address)
 
-    # accept connection
-    def accept(self):
-        return self.server_socket.accept()
+while True:
+    print >> sys.stderr, '\nwaiting to receive message'
+    data, address = sock.recvfrom(4096)
 
-    # close connection
-    def close(self):
-        self.server_socket.close()
+    print >> sys.stderr, 'received %s bytes from %s' % (len(data), address)
+    print >> sys.stderr, data
 
-    # send dictionary
-    @staticmethod
-    def send_dict(connection, dictionary):
-        data_p = pickle.dumps(dictionary)
-        connection.sendall(data_p)
-
-    # receive dictionary
-    @staticmethod
-    def get_dict(connection, size):
-        dict_msg = connection.recv(size)
-        return pickle.loads(dict_msg)
-
-
-if __name__ == "__main__":
-    # create a socket object
-    server_socket = ServerSocket()
-    print("listening to socket")
-    connect, address = server_socket.accept()
-    print("got connection from", address)
-    # val_1, val_2, val_3 = 1, 2, 3
-    count = 1
-    while True:
-        try:
-            # command_dictionary = {"val1": val_1, "val2": val_2, "val3": val_3}
-            # server_socket.send_dict(connect, command_dictionary)
-            values_received = server_socket.get_dict(connect, 1024)
-            print("len: ", len(values_received), type(values_received))
-            print(values_received, count)
-            count += 1
-        except:
-            pass
-        # server_socket.close()
+    if data:
+        sent = sock.sendto(data, address)
+        print >> sys.stderr, 'sent %s bytes back to %s' % (sent, address)
