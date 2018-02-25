@@ -37,11 +37,8 @@ if __name__ == "__main__":
     print("connected to socket")
     val_1, val_2, val_3 = 1, 2, 3
     while True:
-        try:
-            command_dictionary = {"command": "forward"}
-            client_socket.send_dict(command_dictionary)
-        except:
-            pass
+        command_dictionary = {"command": val_1}
+        client_socket.send_dict(command_dictionary)
     # close the socket
     client_socket.close()
 
