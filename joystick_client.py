@@ -32,4 +32,4 @@ if __name__ == "__main__":
         dict_command = {"command": "forward"}
         print(sys.stderr, 'sending "%s"' % dict_command)
         client_socket.send_dict(dict_command)
-        time.sleep(0.5)
+        time.sleep(0.05)
