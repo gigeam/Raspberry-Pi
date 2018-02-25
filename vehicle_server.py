@@ -70,7 +70,7 @@ if __name__ == "__main__":
         # print(sys.stderr, 'received %s bytes from %s' % (len(received_data), sender_address))
         print(sys.stderr, received_data)
         direction = 0 # 0 forward, 1 backward
-        no_steps = 10
+        no_steps = 1
         pos_stepstyles = 0
         # Stepper 1
         if not st1.isAlive():
