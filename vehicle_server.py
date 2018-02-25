@@ -3,11 +3,13 @@ import sys
 import pickle
 
 
+# create a UDP socket
 class ServerSocket(object):
     # constructor method
     def __init__(self, raspberry="192.168.0.86", port=12345):
         self.host = raspberry
         self.port = port
+        # https://pymotw.com/2/socket/udp.html
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.server_socket.bind((self.host, self.port))
 
@@ -31,8 +33,3 @@ if __name__ == "__main__":
 
         print(sys.stderr, 'received %s bytes from %s' % (len(received_data), sender_address))
         print(sys.stderr, received_data)
-        """
-        if data:
-            sent = sock.sendto(data, address)
-            print(sys.stderr, 'sent %s bytes back to %s' % (sent, address))
-        """
