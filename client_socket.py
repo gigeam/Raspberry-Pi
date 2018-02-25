@@ -5,7 +5,7 @@ import pickle
 
 class ClientSocket(object):
     # constructor method
-    def __init__(self, raspberry="192.168.0.73", port=12345):
+    def __init__(self, raspberry="192.168.0.86", port=12345):
         # raspberry pi IP
         self.host = raspberry
         self.port = port

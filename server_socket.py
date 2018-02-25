@@ -7,7 +7,7 @@ import struct
 
 class ServerSocket(object):
     # constructor method
-    def __init__(self, raspberry="192.168.0.73", port=12345):
+    def __init__(self, raspberry="192.168.0.86", port=12345):
         self.host = raspberry
         self.port = port
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
