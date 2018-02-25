@@ -89,8 +89,7 @@ if __name__ == "__main__":
             else:
                 d = Adafruit_MotorHAT.FORWARD
             print("Stepper 2", "%d steps" % no_steps, "forward" if direction == 0 else "backward")
-            st2 = threading.Thread(target=stepper_worker,
-                                   args=(myStepper2, no_steps, d, stepstyles[pos_stepstyles],))
+            st2 = threading.Thread(target=stepper_worker, args=(myStepper2, no_steps, d, stepstyles[pos_stepstyles],))
             st2.start()
         # 0.01 small delay to stop from constantly polling threads
         # https://forums.adafruit.com/viewtopic.php?f=50&t=104354&p=562733#p562733)
