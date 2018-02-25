@@ -24,8 +24,8 @@ atexit.register(turnOffMotors)
 
 myStepper1 = mh.getStepper(200, 1)      # 200 steps/rev, motor port #1
 myStepper2 = mh.getStepper(200, 2)      # 200 steps/rev, motor port #1
-myStepper1.setSpeed(30)          # 30 RPM
-myStepper2.setSpeed(30)          # 30 RPM
+myStepper1.setSpeed(60)          # 60 RPM
+myStepper2.setSpeed(60)          # 60 RPM
 
 
 stepstyles = [Adafruit_MotorHAT.SINGLE, Adafruit_MotorHAT.DOUBLE, Adafruit_MotorHAT.INTERLEAVE, Adafruit_MotorHAT.MICROSTEP]
