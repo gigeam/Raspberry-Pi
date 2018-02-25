@@ -58,12 +58,11 @@ class ServerSocket(object):
         return pickle.loads(dict_msg)
         
 
-
 if __name__ == "__main__":
     # create a socket object
     server_socket = ServerSocket()
     print("listening to socket")
-    con, address = server_socket.accept()
+    connection, address = server_socket.accept()
     print("got connection from", address)
     val_1 = 1
     val_2 = 2
@@ -71,8 +70,8 @@ if __name__ == "__main__":
     while True:
         # values_sent = [1.0, 2.0, 3.0]
         # server_socket.send_floats(con, values_sent)
-        dict = {"val1":val_1, "val2":val_2, "val3":val_3}
-        server_socket.send_dict(con, dict)
+        dictionary = {"val1":val_1, "val2":val_2, "val3":val_3}
+        server_socket.send_dict(connection, dictionary)
         # values_received = server_socket.get_floats(con, 3)
         # print(values_received)
     # close the socket
