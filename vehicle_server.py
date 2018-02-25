@@ -44,9 +44,12 @@ if __name__ == "__main__":
         try:
             # command_dictionary = {"val1": val_1, "val2": val_2, "val3": val_3}
             # server_socket.send_dict(connect, command_dictionary)
-            values_received = server_socket.get_dict(connect, 1024)
-            print("len: ", len(values_received), type(values_received))
-            print(values_received, count)
+
+            #values_received = server_socket.get_dict(connect, 1024)
+            # print("len: ", len(values_received), type(values_received))
+            # print(values_received, count)
+            received = server_socket.server_socket.recv(1024)
+            print(received, count)
             count += 1
         except:
             pass

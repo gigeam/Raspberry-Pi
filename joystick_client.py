@@ -12,7 +12,7 @@ class ClientSocket(object):
 
     # connect to server
     def connect(self):
-        self.client_socket.connect((self.host,self.port))
+        self.client_socket.connect((self.host, self.port))
 
     # close connection
     def close(self):
@@ -39,7 +39,8 @@ if __name__ == "__main__":
     while True:
         try:
             command_dictionary = {"command1": val_1, "command2": val_2, "command3": val_3}
-            client_socket.send_dict(command_dictionary)
+            #client_socket.send_dict(command_dictionary)
+            client_socket.client_socket.sendall("here you go".encode())
         except:
             pass
         client_socket.close()
