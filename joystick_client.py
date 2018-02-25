@@ -10,7 +10,7 @@ from knn_predict import predict_command
 # create a UDP socket
 class ClientSocket(object):
     # constructor method
-    def __init__(self, raspberry="172.20.10.14", port=12345):
+    def __init__(self, raspberry="172.20.10.5", port=12345):
         # raspberry pi IP
         self.host = raspberry
         self.port = port

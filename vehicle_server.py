@@ -11,7 +11,7 @@ import random
 # create a UDP socket
 class ServerSocket(object):
     # constructor method
-    def __init__(self, raspberry="172.20.10.14", port=12345):
+    def __init__(self, raspberry="172.20.10.5", port=12345):
         self.host = raspberry
         self.port = port
         # https://pymotw.com/2/socket/udp.html
