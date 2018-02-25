@@ -42,8 +42,11 @@ if __name__ == "__main__":
     while True:
         # command_dictionary = {"val1": val_1, "val2": val_2, "val3": val_3}
         # server_socket.send_dict(connect, command_dictionary)
-        values_received = server_socket.get_dict(connect, 1024)
-        print(values_received)
+        try:
+            values_received = server_socket.get_dict(connect, 1024)
+            print(values_received)
+        except:
+            pass
     # close the socket
     server_socket.close()
 
