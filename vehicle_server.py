@@ -48,6 +48,9 @@ if __name__ == "__main__":
             print("len: ", len(values_received), type(values_received))
             print(values_received, count)
             count += 1
+        except:
+            pass
+        """    
         finally:
             server_socket.close()
-
+        """
