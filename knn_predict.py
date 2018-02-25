@@ -7,7 +7,7 @@ def predict_command(knn_clf, input_angle):
     codes = {0: "stop", 1: "forward", 2: "backward", 3: "left", 4: "right"}
     command = knn_clf.predict(np.array(input_angle).reshape(1, 2))[0]
     print("command: ", codes[command])
-    return command
+    return codes[command]
 
 
 if __name__ == "__main__":
