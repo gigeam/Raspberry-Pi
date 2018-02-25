@@ -2,6 +2,9 @@ import socket
 import sys
 import pickle
 import time
+from sense_hat import SenseHat
+from sklearn.externals import joblib
+from knn_predict import predict_command
 
 
 # create a UDP socket
@@ -24,12 +27,23 @@ class ClientSocket(object):
         self.client_socket.sendto(data_p, (self.host, self.port))
 
 if __name__ == "__main__":
+    # instantiate sense hat object
+    sense = SenseHat()
+    # load pre-trained classifier from file
+    clf = joblib.load('knn_uniform.pkl')
     # create a socket object
     client_socket = ClientSocket()
     print("connecting to socket")
+    # repeat forever, execution can be stopped using ctrl+c
     while True:
-        # send command
-        dict_command = {"command": "forward"}
+        # pitch, roll, yaw, using accelerometer, gyroscope and magnetometer (for best accuracy)
+        orientation = sense.get_orientation()
+        # extract the two dimensions i.e. pitch and roll
+        angle = [orientation["pitch"], orientation["roll"]]
+        # infer a command using knn classifier
+        command = predict_command(clf, angle)
+        # send command as a dictionary
+        dict_command = {"command": command}
         print(sys.stderr, 'sending "%s"' % dict_command)
         client_socket.send_dict(dict_command)
         time.sleep(0.05)
