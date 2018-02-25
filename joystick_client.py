@@ -10,7 +10,7 @@ message = 'This is the message.  It will be repeated.'
 try:
     # Send data
     print(sys.stderr, 'sending "%s"' % message)
-    sent = sock.sendto(message, server_address)
+    sent = sock.sendto(message.encode(), server_address)
 
     # Receive response
     print(sys.stderr, 'waiting to receive')
