@@ -69,7 +69,8 @@ if __name__ == "__main__":
         received_data, sender_address = server_socket.get_dict(4096)
         # print(sys.stderr, 'received %s bytes from %s' % (len(received_data), sender_address))
         print(sys.stderr, received_data)
-        direction = 0 # 0 forward, 1 backward
+        # 0 backward, 1 forward
+        direction = 1
         no_steps = 20
         pos_stepstyles = 0
         # Stepper 1
