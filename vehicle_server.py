@@ -49,7 +49,7 @@ if __name__ == "__main__":
             # print("len: ", len(values_received), type(values_received))
             # print(values_received, count)
             received = server_socket.server_socket.recv(1024)
-            print(received, count)
+            print(received.decode('base64','strict'), count)
             count += 1
         except:
             pass
