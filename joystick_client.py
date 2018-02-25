@@ -40,15 +40,5 @@ if __name__ == "__main__":
         try:
             command_dictionary = {"command": val_1}
             client_socket.send_dict(command_dictionary)
-        except:
+        finally:
             client_socket.close()
-            pass
-    # close the socket
-    client_socket.close()
-
-
-
-
-
-
-
