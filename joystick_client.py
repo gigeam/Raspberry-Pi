@@ -38,7 +38,8 @@ if __name__ == "__main__":
     val_1, val_2, val_3 = 1, 2, 3
     while True:
         try:
-            command_dictionary = {"command": val_1}
+            command_dictionary = {"command1": val_1, "command2": val_2, "command3": val_3}
             client_socket.send_dict(command_dictionary)
-        finally:
-            client_socket.close()
+        except:
+            pass
+        client_socket.close()
