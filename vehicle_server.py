@@ -9,7 +9,7 @@ class ServerSocket(object):
         self.port = port
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.server_socket.bind((self.host, self.port))
-        self.server_socket.listen(5)
+        #self.server_socket.listen(5)
 
     # accept connection
     def accept(self):
