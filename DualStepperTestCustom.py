@@ -38,7 +38,7 @@ def stepper_worker(stepper, numsteps, direction, style):
 while (True):
     randomdir = random.randint(0, 1)
     randomsteps = random.randint(50, 100)
-    pos_stepstyles = 1
+    pos_stepstyles = 2
     if not st1.isAlive():
         #randomdir = random.randint(0, 1)
         #print("Stepper 1"),
