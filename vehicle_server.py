@@ -7,7 +7,7 @@ class ServerSocket(object):
     def __init__(self, raspberry="192.168.0.86", port=12345):
         self.host = raspberry
         self.port = port
-        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.server_socket.bind((self.host, self.port))
         self.server_socket.listen(5)
 

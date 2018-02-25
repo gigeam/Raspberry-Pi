@@ -8,7 +8,7 @@ class ClientSocket(object):
         # raspberry pi IP
         self.host = raspberry
         self.port = port
-        self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     # connect to server
     def connect(self):
