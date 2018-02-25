@@ -49,6 +49,7 @@ if __name__ == "__main__":
             print(values_received, count)
             count += 1
         except:
+            server_socket.close()
             pass
     # close the socket
     server_socket.close()
