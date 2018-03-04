@@ -4,7 +4,7 @@ import pickle
 import time
 from sense_hat import SenseHat
 from sklearn.externals import joblib
-from knn_predict import predict_command
+import numpy as np
 
 
 # create a UDP socket
@@ -25,6 +25,14 @@ class ClientSocket(object):
     def send_dict(self, dictionary):
         data_p = pickle.dumps(dictionary)
         self.client_socket.sendto(data_p, (self.host, self.port))
+
+
+# predict command using loaded classifier
+def predict_command(knn_clf, input_angle):
+    codes = {0: "stop", 1: "forward", 2: "backward", 3: "left", 4: "right"}
+    cmd = knn_clf.predict(np.array(input_angle).reshape(1, 2))[0]
+    print("command: ", codes[cmd])
+    return codes[cmd]
 
 if __name__ == "__main__":
     # instantiate sense hat object
