@@ -69,6 +69,7 @@ if __name__ == "__main__":
     # create a socket object
     server_socket = ServerSocket()
     print("listening to socket")
+    # repeat forever, execution can be stopped using ctrl+c
     while True:
         print(sys.stderr, '\nwaiting to receive message')
         received_data, sender_address = server_socket.get_dict(4096)
