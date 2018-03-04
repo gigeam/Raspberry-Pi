@@ -36,6 +36,7 @@ def turn_off_motors():
     mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
 
 
+# function that instructs a stepper motor how to move
 def stepper_worker(stepper, num_steps, moving_direction, style):
     # print("Stepping!")
     stepper.step(num_steps, moving_direction, style)
