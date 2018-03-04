@@ -54,4 +54,5 @@ if __name__ == "__main__":
         dict_command = {"command": command}
         print(sys.stderr, 'sending "%s"' % dict_command)
         client_socket.send_dict(dict_command)
+        # 0.05 small delay between commands
         time.sleep(0.05)
