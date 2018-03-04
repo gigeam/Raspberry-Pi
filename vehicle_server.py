@@ -61,6 +61,10 @@ if __name__ == "__main__":
                   Adafruit_MotorHAT.DOUBLE,
                   Adafruit_MotorHAT.INTERLEAVE,
                   Adafruit_MotorHAT.MICROSTEP]
+    # number of steps to be performed by each motor simultaneously
+    no_steps = 20
+    # steps styles e.g. 0 corresponds to Adafruit_MotorHAT.SINGLE
+    pos_stepstyles = 0
     # create a socket object
     server_socket = ServerSocket()
     print("listening to socket")
@@ -80,8 +84,6 @@ if __name__ == "__main__":
         # simply continue if received command was "stop"
         if direction == "stop":
             continue
-        no_steps = 20
-        pos_stepstyles = 0
         # stepper 1
         if not st1.isAlive():
             if direction == "backward":
