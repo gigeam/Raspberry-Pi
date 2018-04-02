@@ -31,14 +31,14 @@ cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF', '#FDFD06', '#E09CF
 cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF', '#F0E94A', '#810C9C'])
 
 # 'uniform' : all points in each neighborhood are weighted equally.
-# 'distance' : weight points by the inverse of their distance.
+# 'distance' : weigh points by the inverse of their distance.
 for weights in ['uniform', 'distance']:
     # we create an instance of Neighbours Classifier and fit the data.
     clf = neighbors.KNeighborsClassifier(n_neighbors, weights=weights)
     clf.fit(X, y)
 
     # Plot the decision boundary. For that, we will assign a color to each
-    # point in the mesh [x_min, x_max]x[y_min, y_max].
+    # point in the mesh [x_min, x_max] x [y_min, y_max].
     x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
     y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
