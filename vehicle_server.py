@@ -8,7 +8,7 @@ import threading
 import random
 
 
-# create a UDP socket
+# create a UDP server socket
 class ServerSocket(object):
     # constructor method
     def __init__(self, raspberry="172.20.10.5", port=12345):
