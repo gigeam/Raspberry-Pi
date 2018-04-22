@@ -31,7 +31,7 @@ cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF', '#FDFD06', '#E09CF
 cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF', '#F0E94A', '#810C9C'])
 
 # 'uniform' : all points in each neighborhood are weighted equally.
-# 'distance' : weigh points by the inverse of their distance.
+# 'distance' : weight points by the inverse of their distance.
 for weights in ['uniform', 'distance']:
     # we create an instance of Neighbours Classifier and fit the data.
     clf = neighbors.KNeighborsClassifier(n_neighbors, weights=weights)
