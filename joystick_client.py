@@ -7,7 +7,7 @@ from sklearn.externals import joblib
 import numpy as np
 
 
-# create a UDP socket
+# create a UDP client socket
 class ClientSocket(object):
     # constructor method
     def __init__(self, raspberry="172.20.10.5", port=12345):
