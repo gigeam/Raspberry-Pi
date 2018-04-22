@@ -16,6 +16,8 @@ class ServerSocket(object):
         self.port = port
         # https://pymotw.com/2/socket/udp.html
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # https://stackoverflow.com/questions/6380057/python-binding-socket-address-already-in-use
+        self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.server_socket.bind((self.host, self.port))
 
     # close connection
