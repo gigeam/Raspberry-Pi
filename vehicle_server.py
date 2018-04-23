@@ -77,7 +77,7 @@ if __name__ == "__main__":
         received_data, sender_address = server_socket.get_dict(4096)
         # print(sys.stderr, 'received %s bytes from %s' % (len(received_data), sender_address))
         print(sys.stderr, received_data)
-        # 0 backward, 1 forward
+        # stop, forward, backward, left, right
         direction = received_data["command"]
         # assert that a valid command was received
         assert(direction == "stop" or
